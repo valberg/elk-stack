@@ -1,0 +1,6 @@
+*.sw*
+*.tfstate*
+.terraform/
+.vagrant/
+*.retry
+terraform.tfvars
