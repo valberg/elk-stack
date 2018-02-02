@@ -1,0 +1,22 @@
+# ---------------------------------- Cluster -----------------------------------
+cluster.name: {{ es_cluster_name }}
+# ---------------------------------- Node --------------------------------------
+node.name: {{ es_node_name_prefix }}-{{ ansible_hostname }}
+node.master: {{ es_node_master }}
+node.data: {{ es_node_data }}
+
+# ----------------------------------- Paths ------------------------------------
+path.data: {{ es_path_data }}
+path.logs: {{ es_path_logs }}
+
+# ---------------------------------- Network -----------------------------------
+network.host: _site_
+http.port: {{ es_listen_port }}
+
+# --------------------------------- Bulk pool ----------------------------------
+thread_pool.bulk.queue_size: 128
+
+# --------------------------------- x-pack config-------------------------------
+xpack.security.enabled: false
+xpack.ml.enabled: false
+xpack.watcher.enabled: false

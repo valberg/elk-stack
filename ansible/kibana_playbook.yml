@@ -1,0 +1,13 @@
+---
+- hosts: kibana
+  become: yes
+  become_user: root
+
+  vars:
+    - kibana_elasticsearch_url: "http://172.31.0.10:9200"
+    - nginx_server_name: "localhost"
+
+  roles:
+    - ssh_access
+    - elastic-apt-repository
+    - kibana

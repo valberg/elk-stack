@@ -1,0 +1,7 @@
+# {{ ansible_managed }}
+
+output {
+  elasticsearch {
+    hosts => [{{ elasticsearch_backends | join(',') }}]
+  }
+}

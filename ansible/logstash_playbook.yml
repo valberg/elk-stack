@@ -1,0 +1,9 @@
+---
+- hosts: logstash
+  become: yes
+  become_user: root
+
+  roles:
+    - ssh_access
+    - elastic-apt-repository
+    - logstash

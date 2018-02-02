@@ -1,0 +1,10 @@
+es_node_name_prefix: es
+es_listen_port: 9200
+es_path_data: /opt/elasticsearch-data
+es_path_logs: /var/log/elasticsearch
+es_node_master: "true"
+es_node_data: "true"
+es_plugins:
+  - x-pack
+es_heap_min: 2g
+es_heap_max: 2g

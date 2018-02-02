@@ -1,0 +1,8 @@
+---
+logstash_tcp_input_listener_port: 9000
+logstash_tcp_input_codec: 'json'
+
+logstash_udp_input_listener_port: 9000
+
+elasticsearch_backends:
+  - '"172.31.0.10:9200"'

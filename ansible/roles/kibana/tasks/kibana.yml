@@ -1,0 +1,37 @@
+---
+- name: Install kibana
+  apt:
+    name: kibana
+    state: present
+    update_cache: yes
+
+- name: Configure kibana
+  template:
+    src: kibana.yml.j2
+    dest: /etc/kibana/kibana.yml
+    owner: kibana
+    group: kibana
+    mode: 0640
+  notify:
+    - restart kibana
+
+- name: Create log dir for kibana
+  file:
+    path: "{{ kibana_log_dir }}"
+    state: directory
+    owner: kibana
+    group: kibana
+
+- name: Enable kibana service
+  systemd:
+    name: kibana
+    state: started
+    enabled: yes
+
+- name: Install kibana plugin(s)
+  command: "/usr/share/kibana/bin/kibana-plugin install {{ item }} --silent"
+  args:
+    creates: "/usr/share/kibana/plugins/{{ item }}/"
+  register: plugin_installed
+  failed_when: "'ERROR' in plugin_installed.stdout"
+  with_items: "{{ kibana_plugins }}"

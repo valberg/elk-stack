@@ -1,0 +1,43 @@
+---
+
+- name: Install java (somehow has to be installed before logstash)
+  apt:
+    name: default-jdk-headless
+    state: present
+    update_cache: yes
+
+- name: Install logstash
+  apt:
+    name: logstash
+    state: present
+    update_cache: yes
+
+- name: Configure logstash
+  template:
+    src: logstash.conf.j2
+    dest: /etc/logstash/logstash.conf
+    owner: logstash
+    group: logstash
+    mode: 0640
+
+- name: Configure logstash outputs
+  template:
+    src: logstash-output.conf.j2
+    dest: /etc/logstash/conf.d/output.conf
+    owner: logstash
+    group: logstash
+    mode: 0640
+
+- name: Configure logstash tcp input
+  template:
+    src: logstash-tcp-input.conf.j2
+    dest: /etc/logstash/conf.d/tcp-input.conf
+    owner: logstash
+    group: logstash
+    mode: 0640
+
+- name: Enable logstash service
+  systemd:
+    name: logstash
+    state: started
+    enabled: yes

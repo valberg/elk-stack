@@ -1,0 +1,8 @@
+# {{ ansible_managed }}
+
+input {
+  tcp {
+    port => {{ logstash_tcp_input_listener_port }}
+    codec => {{ logstash_tcp_input_codec }}
+  }
+}

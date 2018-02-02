@@ -1,0 +1,13 @@
+---
+- hosts: elasticsearch
+  become: yes
+  become_user: root
+
+  vars:
+    - es_cluster_name: es_test_cluster
+    - es_listen_port: 9200
+
+  roles:
+    - ssh_access
+    - elastic-apt-repository
+    - elasticsearch

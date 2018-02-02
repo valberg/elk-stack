@@ -1,0 +1,17 @@
+# {{ ansible_managed }}
+
+server.name: kibana-{{ ansible_hostname }}
+server.port: {{ kibana_listen_port }}
+server.host: {{ kibana_listen_addr }}
+
+elasticsearch.url: {{ kibana_elasticsearch_url }}
+elasticsearch.requestTimeout: {{ kibana_elasticsearch_request_timeout }}
+
+kibana.index: ".kibana"
+
+logging.dest: "{{ kibana_log_dir }}/kibana.log"
+logging.quiet: true
+logging.verbose: false
+
+#xpack.security.enabled: false
+#xpack.ml.enabled: false
